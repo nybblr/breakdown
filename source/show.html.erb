@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<title>CoffeeScript/Paper.js</title>
+ 
+<script src="https://raw.github.com/paperjs/paper.js/master/dist/paper.js"></script>
+<script src="https://raw.github.com/jashkenas/coffee-script/master/extras/coffee-script.js"></script>
+<%= javascript_include_tag "lib/jquery" %>
+<!-- <script src="https://raw.github.com/gist/1164446/coffee&#45;stained&#45;paper.js"></script> -->
+
+<script type="text/javascript">
+	window.stainedPaper = function (func) {
+    // var canvas = document.createElement('canvas');
+    // document.body.appendChild(canvas);
+		var canvas = document.getElementById('breakdown')
+		// var canvas = $('#breakdown').get()
+    paper.setup(canvas);
+    func.call(paper);
+};
+</script>
+ 
+<script type="text/coffeescript">
+ 
+  stainedPaper ->
+ 
+  
+    path = new @Path()
+ 
+    # Give the stroke a color
+    path.strokeColor = 'black'
+    start = new @Point(100, 100)
+ 
+    # Move to start and draw a line from there
+    path.moveTo(start)
+ 
+    # Note that the plus operator on Point objects does not work
+    # in JavaScript. Instead, we need to call the add() function:
+    path.lineTo start.add([ 200, -50 ])
+ 
+    # Draw the view now:
+    @view.draw()
+      
+    rect = new @Path.Rectangle([100, 50], [10, 100])
+    rect.strokeColor = 'black'
+ 
+    @view.onFrame = (event) ->
+      # On each frame, rotate the path by 3 degrees:
+      rect.rotate(3)
+ 
+</script>
+
+<canvas id='breakdown'/>

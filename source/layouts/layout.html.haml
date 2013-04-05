@@ -1,0 +1,31 @@
+!!! 5
+%html{ html_attrs }
+	%head
+		%title #{current_page.data.title || yield_content(:title)} | BREAKDOWN
+		%meta{ :charset => "UTF-8" }
+
+		= meta_tag "text/html; charset=utf-8", "http-equiv" => "Content-Type"
+		= meta_tag "width=device-width, initial-scale=1", :name => :viewport
+
+		= meta_tag current_page.data.description, :name => :description if current_page.data.description
+		= meta_tag current_page.data.keywords,    :name => :keywords    if current_page.data.keywords
+		= meta_tag current_page.data.author,      :name => :author      if current_page.data.author
+
+		= stylesheet_link_tag "all", :media => "all"
+		= javascript_include_tag "lib/paper", "all"
+
+	%body{ :class => page_classes }
+		%article
+			%header
+				%h1= link_to "Jonathan Martin", "/pages/about-me"
+				%nav
+					= link_to "faith,", "/"
+					= link_to "dev", "/"
+					= link_to "&", "/", :class => :ampersand
+					= link_to "photography", "/"
+			%section
+				= yield
+		%footer
+			%nav
+				= link_to "about me,", "/pages/about-me"
+				= link_to "get in touch.", "/pages/contact-me"
