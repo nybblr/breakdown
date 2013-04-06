@@ -43,10 +43,10 @@ window.Shape = class Shape
 			# Define the dynamic body. We set its position and call the body factory.
 			bodyDef = new b2BodyDef
 			bodyDef.position.Set(position...)
-			bodyNew = game.world.CreateBody(bodyDef)
+			bodyNew = @game.world.CreateBody(bodyDef)
 
 			# Define another shape for our dynamic body.
-			shapeDef = None
+			shapeDef = null
 
 			if kind is "box"
 				shapeDef = b2PolygonDef()
@@ -93,3 +93,15 @@ window.Shape = class Shape
 
 	density: (value) ->
 		@constructor.dynamics.push [@body, value]
+
+	draw: ->
+		return if not @body
+
+		for shape in body.shapeList
+			vertices = (b2Mul(body.GetXForm(), v)*@game.ppm for v in shape.vertices)
+			vertices = ([v[0], @game.height-v[1]] for v in vertices)
+			point1 = new Point(20,20)
+			point2 = new Point(40,40)
+			@view.draw()
+			rect = new paper.Path.Rectangle(vertices)
+			rect.strokeColor = 'black'

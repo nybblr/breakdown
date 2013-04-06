@@ -1,6 +1,16 @@
+b2Vec2 = Box2D.Common.Math.b2Vec2
+b2AABB = Box2D.Collision.b2AABB
+b2BodyDef = Box2D.Dynamics.b2BodyDef
+b2Body = Box2D.Dynamics.b2Body
+b2FixtureDef = Box2D.Dynamics.b2FixtureDef
+b2Fixture = Box2D.Dynamics.b2Fixture
+b2World = Box2D.Dynamics.b2World
+b2MassData = Box2D.Collision.Shapes.b2MassData
+b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape
+b2CircleShape = Box2D.Collision.Shapes.b2CircleShape
+
 $ ->
 	papercut '#breakdown', ->
-		window.game = new Game
 
 		path = new @Path()
 
@@ -24,3 +34,6 @@ $ ->
 		@view.onFrame = (event) ->
 			# On each frame, rotate the path by 3 degrees:
 			rect.rotate(3)
+
+		window.game = new Game
+		game.gameScreen(1)
