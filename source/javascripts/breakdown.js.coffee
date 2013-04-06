@@ -1,5 +1,7 @@
 $ ->
 	papercut '#breakdown', ->
+		window.game = new Game
+
 		path = new @Path()
 
 		# Give the stroke a color

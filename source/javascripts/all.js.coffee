@@ -5,7 +5,10 @@
 #
 #= require_self
 #
+#= require breakdown
 #= require game
+#= require shape
+#= require paddle
 
 window.papercut = (element, func) ->
 	canvas = $(element).get(0)
